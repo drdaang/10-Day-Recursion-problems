@@ -1,0 +1,14 @@
+string removeDuplicate(string &s)
+{
+    int i=0;
+    string ans="";
+    while(i<s.length()){
+        if(s[i]==s[i+1]){
+            s.erase(i,1);
+        }
+        else{
+            i++;
+        }
+    }
+    return s;
+}
