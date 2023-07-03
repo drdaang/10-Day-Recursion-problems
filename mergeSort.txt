@@ -1,0 +1,55 @@
+void merge(vector<int>&arr,int lo,int mid,int hi){
+    int m=mid-lo+1;
+    int n=hi-mid;
+    int leftSubarray[m];
+    int rightSubarray[n];
+    
+   for(int i=0;i<m;i++){
+        leftSubarray[i]=arr[lo+i];
+   }
+   for(int j=0;j<n;j++){
+        rightSubarray[j]=arr[mid+1+j];
+   }
+   int lidx=0,ridx=0,totidx=lo;
+   while(lidx<m && ridx<n){
+       if(leftSubarray[lidx]<rightSubarray[ridx]){
+           arr[totidx]=leftSubarray[lidx];
+           lidx++;
+       }
+       else{
+           arr[totidx]=rightSubarray[ridx];
+           ridx++;
+       }
+       totidx++;
+   }
+   while(lidx<m){
+       arr[totidx]=leftSubarray[lidx];
+       lidx++;
+       totidx++;
+   }
+   while(ridx<n){
+       arr[totidx]=rightSubarray[ridx];
+       ridx++;
+       totidx++;
+   }
+   
+}
+
+void merSort(vector < int > & arr, int lo,int hi){
+    int mid=(lo+hi)/2;
+    if(lo>=hi){
+        return;
+    }
+    merSort(arr,lo,mid);
+    merSort(arr,mid+1,hi);
+    merge(arr,lo,mid,hi);
+
+}
+
+void mergeSort( vector < int > & arr, int n) {
+    int lo=0;
+    int hi=n-1;
+    int mid=(lo+hi)/2;
+    merSort(arr,0,n-1);
+    
+}
