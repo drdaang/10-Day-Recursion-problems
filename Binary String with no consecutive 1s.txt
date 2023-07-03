@@ -1,0 +1,26 @@
+#include<vector>
+void rec(int N,string s,vector<string> &vec,int idx){
+    if(N==idx){
+        vec.push_back(s);
+        return;
+    }
+    if(s[idx-1]=='0'){
+        rec(N,s+'0',vec,idx+1);
+        rec(N,s+'1',vec,idx+1);
+    }
+    
+    else{
+        rec(N,s+'0',vec,idx+1);
+    }
+}
+
+vector<string> generateString(int N) {
+    vector<string> vec;
+    string s;
+    s+='0';
+    rec(N,s,vec,1);
+    s[0]='1';
+    rec(N,s,vec,1);
+    sort(vec.begin(),vec.end());
+    return vec;
+}
